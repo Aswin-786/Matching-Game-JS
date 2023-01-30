@@ -64,3 +64,19 @@ const cardAraay = [
 // to get random
 cardAraay.sort( () => 0.5 - Math.random())
 console.log(cardAraay)
+
+const grid = document.querySelector('.grid')
+
+const makeBox = () => {
+  for (let i = 0; i < cardAraay.length; i++) {
+    const box = document.createElement('img')
+    box.setAttribute('src', 'blank.png')
+    box.setAttribute('data-id', i)
+    console.log(box)
+    console.log(grid)
+    grid.appendChild(box)
+    
+  }
+}
+
+makeBox()
