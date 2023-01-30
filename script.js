@@ -67,11 +67,13 @@ console.log(cardAraay)
 
 const grid = document.querySelector('.grid')
 
+
 const makeBox = () => {
   for (let i = 0; i < cardAraay.length; i++) {
     const box = document.createElement('img')
     box.setAttribute('src', 'blank.png')
     box.setAttribute('data-id', i)
+    box.addEventListener('click', flipCard)
     console.log(box)
     console.log(grid)
     grid.appendChild(box)
@@ -80,3 +82,7 @@ const makeBox = () => {
 }
 
 makeBox()
+
+function flipCard() {
+  console.log("clicked")
+}
