@@ -67,9 +67,11 @@ console.log(cardAraay)
 
 const grid = document.querySelector('.grid')
 
-const cardsChosen = []
+let cardsChosen = []
 
-const cardsChosenIds = []
+let cardsChosenIds = []
+
+const cardWon = []
 
 
 const makeBox = () => {
