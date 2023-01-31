@@ -67,6 +67,10 @@ console.log(cardAraay)
 
 const grid = document.querySelector('.grid')
 
+const cardsChosen = []
+
+const cardsChosenIds = []
+
 
 const makeBox = () => {
   for (let i = 0; i < cardAraay.length; i++) {
@@ -83,6 +87,33 @@ const makeBox = () => {
 
 makeBox()
 
+function checkMatch () {
+
+  const boxs = document.querySelectorAll('img')
+
+  if(cardsChosen[0] == cardsChosen[1]) {
+    alert("Yeyy... Matched")
+
+    boxs[cardsChosenIds[0]].setAttribute('src', 'white.png')
+    boxs[cardsChosenIds[1]].setAttribute('src', 'white.png')
+
+    boxs[cardsChosenIds[0]].removeEventListener('click', flipCard)
+    boxs[cardsChosenIds[1]].removeEventListener('click', flipCard)
+
+  } else {
+    boxs[cardsChosenIds[0]].setAttribute('src', 'blank.png')
+    boxs[cardsChosenIds[1]].setAttribute('src', 'blank.png')
+  }
+}
+
 function flipCard() {
-  console.log("clicked")
+  const boxId = this.getAttribute('data-id')
+  
+  cardsChosen.push(cardAraay[boxId].name)
+
+  cardsChosenIds.push(boxId)
+  this.setAttribute('src', cardAraay[boxId].image)
+  if(cardsChosen.length == 2) {
+    setTimeout( checkMatch, 500)
+  }
 }
