@@ -1,62 +1,62 @@
 const cardAraay = [
   {
     name: 'cheeseburger',
-    image: 'cheeseburger.png'
+    image: 'cow.png'
   },
 
   {
     name: 'fries',
-    image: 'fries.png'
+    image: 'zebra.png'
   },
 
   {
     name: 'hotdog',
-    image: 'hotdog.png'
+    image: 'dinozer.png'
   },
 
   {
     name: 'ice-cream',
-    image: 'ice-cream.png'
+    image: 'donkey.png'
   },
 
   {
     name: 'milkshake',
-    image: 'milkshake.png'
+    image: 'monkey.png'
   },
 
   {
     name: 'pizza',
-    image: 'pizza.png'
+    image: 'elephant.png'
   },
 
   {
     name: 'cheeseburger',
-    image: 'cheeseburger.png'
+    image: 'cow.png'
   },
 
   {
     name: 'fries',
-    image: 'fries.png'
+    image: 'zebra.png'
   },
 
   {
     name: 'hotdog',
-    image: 'hotdog.png'
+    image: 'dinozer.png'
   },
 
   {
     name: 'ice-cream',
-    image: 'ice-cream.png'
+    image: 'donkey.png'
   },
 
   {
     name: 'milkshake',
-    image: 'milkshake.png'
+    image: 'monkey.png'
   },
 
   {
     name: 'pizza',
-    image: 'pizza.png'
+    image: 'elephant.png'
   }
 
 ]

@@ -4,10 +4,27 @@
   box-sizing: border-box;
 }
 
-h3 {
+body {
+  background-image: linear-gradient(to right, rgb(232, 176, 176) , rgb(171, 174, 236));
+  height: 2000px;
+  overflow-y: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-30%, -50%);
+}
+
+h2 {
   text-align: center;
   margin-top: 5%;
   margin-bottom: 50px;
+  font-size: 35px;
+  color: rgb(47, 5, 90);
+  letter-spacing: 5px;
+
 }
 .grid {
   display: flex;
