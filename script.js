@@ -75,7 +75,7 @@ let cardsChosenIds = []
 
 const cardWon = []
 
-
+// for setting the images to grid and to start 
 const makeBox = () => {
   for (let i = 0; i < cardAraay.length; i++) {
     const box = document.createElement('img')
@@ -91,6 +91,7 @@ const makeBox = () => {
 
 makeBox()
 
+// to check the match when user selects
 function checkMatch () {
 
   const boxs = document.querySelectorAll('img')
@@ -127,6 +128,7 @@ function checkMatch () {
   cardsChosenIds = []
 }
 
+// change images when user selects image
 function flipCard() {
   const boxId = this.getAttribute('data-id')
   
