@@ -8,30 +8,50 @@ body {
   background-image: linear-gradient(to right, rgb(232, 176, 176) , rgb(171, 174, 236));
   height: 2000px;
   overflow-y: hidden;
+  text-align: center;
+  place-content: center;
+  place-items: center;
+  color: rgb(41, 17, 64);
 }
 
-.container {
+h1 {
+  font-size: 50px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 2px;
   position: absolute;
   top: 30%;
   left: 50%;
-  transform: translate(-30%, -50%);
+  transform: translate(-50%, -30%);
 }
 
-h2 {
-  text-align: center;
-  margin-top: 5%;
-  margin-bottom: 50px;
+h2 { 
+  margin-top: 350px;
   font-size: 35px;
-  color: rgb(47, 5, 90);
-  letter-spacing: 5px;
-
 }
+
 .grid {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 30px;
   width: 400px;
   height: 300px;
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+}
+
+.hidden {
+  opacity: 0;
+  filter: blur(20px);
+  transition: all 1.5s;
+ }
+
+.show {
+  opacity: 1;
+  filter: blur(0);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  white-space: nowrap;
 }
