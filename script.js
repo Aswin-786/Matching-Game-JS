@@ -1,61 +1,61 @@
 const cardAraay = [
   {
-    name: 'cheeseburger',
+    name: 'cow',
     image: 'cow.png'
   },
 
   {
-    name: 'fries',
+    name: 'zebra',
     image: 'zebra.png'
   },
 
   {
-    name: 'hotdog',
+    name: 'dinozer',
     image: 'dinozer.png'
   },
 
   {
-    name: 'ice-cream',
+    name: 'donkey',
     image: 'donkey.png'
   },
 
   {
-    name: 'milkshake',
+    name: 'monkey',
     image: 'monkey.png'
   },
 
   {
-    name: 'pizza',
+    name: 'elephant',
     image: 'elephant.png'
   },
 
   {
-    name: 'cheeseburger',
+    name: 'cow',
     image: 'cow.png'
   },
 
   {
-    name: 'fries',
+    name: 'zebra',
     image: 'zebra.png'
   },
 
   {
-    name: 'hotdog',
+    name: 'dinozer',
     image: 'dinozer.png'
   },
 
   {
-    name: 'ice-cream',
+    name: 'donkey',
     image: 'donkey.png'
   },
 
   {
-    name: 'milkshake',
+    name: 'monkey',
     image: 'monkey.png'
   },
 
   {
-    name: 'pizza',
+    name: 'elephant',
     image: 'elephant.png'
   }
 
@@ -85,6 +85,7 @@ const makeBox = () => {
     console.log(box)
     console.log(grid)
     grid.appendChild(box)
+    grid.style.paddingTop = "px"
     
   }
 }
@@ -96,11 +97,11 @@ function checkMatch () {
 
   const boxs = document.querySelectorAll('img')
 
-  if(cardsChosenIds[0] == cardsChosenIds[1]) {
-    boxs[cardsChosenIds[0]].setAttribute('src', 'blank.png')
-    boxs[cardsChosenIds[1]].setAttribute('src', 'blank.png')
-    alert("Yeyy... Matched")
-  }
+  // if(cardsChosenIds[0] == cardsChosenIds[1]) {
+  //   boxs[cardsChosenIds[0]].setAttribute('src', 'blank.png')
+  //   boxs[cardsChosenIds[1]].setAttribute('src', 'blank.png')
+  //   alert("Yeyy... Matched")
+  // }
 
   if(cardsChosen[0] == cardsChosen[1]) {
     alert("Yeyy... Matched")
@@ -122,6 +123,7 @@ function checkMatch () {
 
   if(cardWon.length == (cardAraay.length / 2)) {
     result.innerHTML = "Congrats you found all"
+    result.innerHTML.style.color="red"
   }
 
   cardsChosen = []
@@ -140,3 +142,19 @@ function flipCard() {
     setTimeout( checkMatch, 500)
   }
 }
+
+
+// scroolin effects
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry)
+    if(entry.isIntersecting) {
+      entry.target.classList.add ('show')
+    } else {
+      entry.target.classList.remove('show')
+    }
+  })
+})
+
+const hiddenElements = document.querySelectorAll('.hidden')
+hiddenElements.forEach((el) => observer.observe(el))
