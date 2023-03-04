@@ -93,7 +93,7 @@ const makeBox = () => {
 makeBox()
 
 // to check the match when user selects
-function checkMatch () {
+const checkMatch = () => {
 
   const boxs = document.querySelectorAll('img')
 
@@ -131,7 +131,7 @@ function checkMatch () {
 }
 
 // change images when user selects image
-function flipCard() {
+const flipCard = () => {
   const boxId = this.getAttribute('data-id')
   
   cardsChosen.push(cardAraay[boxId].name)
@@ -144,7 +144,7 @@ function flipCard() {
 }
 
 
-// scroolin effects
+// scrolling effects
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     console.log(entry)
