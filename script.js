@@ -1,160 +1,103 @@
-const cardAraay = [
-  {
-    name: 'cow',
-    image: 'cow.png'
-  },
+// Card array with name and image for each card
+const cardArray = [
+  { name: 'cow', image: 'cow.png' },
+  { name: 'zebra', image: 'zebra.png' },
+  { name: 'dinozer', image: 'dinozer.png' },
+  { name: 'donkey', image: 'donkey.png' },
+  { name: 'monkey', image: 'monkey.png' },
+  { name: 'elephant', image: 'elephant.png' },
+  { name: 'cow', image: 'cow.png' },
+  { name: 'zebra', image: 'zebra.png' },
+  { name: 'dinozer', image: 'dinozer.png' },
+  { name: 'donkey', image: 'donkey.png' },
+  { name: 'monkey', image: 'monkey.png' },
+  { name: 'elephant', image: 'elephant.png' }
+];
 
-  {
-    name: 'zebra',
-    image: 'zebra.png'
-  },
+// Shuffle the cardArray to get random order of cards
+cardArray.sort(() => 0.5 - Math.random());
 
-  {
-    name: 'dinozer',
-    image: 'dinozer.png'
-  },
+const grid = document.querySelector('.grid');
+const result = document.getElementById('result');
+let cardsChosen = [];
+let cardsChosenIds = [];
+const cardsWon = [];
 
-  {
-    name: 'donkey',
-    image: 'donkey.png'
-  },
+// Function to create card boxes on the grid and add click event listener
+const createCardBoxes = () => {
+  cardArray.forEach((card, i) => {
+    const box = document.createElement('img');
+    box.setAttribute('src', 'blank.png');
+    box.setAttribute('data-id', i);
+    box.addEventListener('click', flipCard);
+    grid.appendChild(box);
+  });
+};
 
-  {
-    name: 'monkey',
-    image: 'monkey.png'
-  },
-
-  {
-    name: 'elephant',
-    image: 'elephant.png'
-  },
-
-  {
-    name: 'cow',
-    image: 'cow.png'
-  },
-
-  {
-    name: 'zebra',
-    image: 'zebra.png'
-  },
-
-  {
-    name: 'dinozer',
-    image: 'dinozer.png'
-  },
-
-  {
-    name: 'donkey',
-    image: 'donkey.png'
-  },
-
-  {
-    name: 'monkey',
-    image: 'monkey.png'
-  },
-
-  {
-    name: 'elephant',
-    image: 'elephant.png'
-  }
-
-]
-
-// to get random
-cardAraay.sort( () => 0.5 - Math.random())
-console.log(cardAraay)
-
-const grid = document.querySelector('.grid')
-
-const result = document.getElementById('result')
-
-let cardsChosen = []
-
-let cardsChosenIds = []
-
-const cardWon = []
-
-// for setting the images to grid and to start 
-const makeBox = () => {
-  for (let i = 0; i < cardAraay.length; i++) {
-    const box = document.createElement('img')
-    box.setAttribute('src', 'blank.png')
-    box.setAttribute('data-id', i)
-    box.addEventListener('click', flipCard)
-    console.log(box)
-    console.log(grid)
-    grid.appendChild(box)
-    grid.style.paddingTop = "px"
-    
-  }
-}
-
-makeBox()
-
-// to check the match when user selects
+// Function to check if two selected cards are a match
 const checkMatch = () => {
+  const boxes = document.querySelectorAll('img');
+  const optionOneId = cardsChosenIds[0];
+  const optionTwoId = cardsChosenIds[1];
 
-  const boxs = document.querySelectorAll('img')
+  if (cardsChosen[0] === cardsChosen[1]) {
+    alert('Yeyy... Matched');
 
-  // if(cardsChosenIds[0] == cardsChosenIds[1]) {
-  //   boxs[cardsChosenIds[0]].setAttribute('src', 'blank.png')
-  //   boxs[cardsChosenIds[1]].setAttribute('src', 'blank.png')
-  //   alert("Yeyy... Matched")
-  // }
+    // Set matched cards' images to white.png and remove click event listener
+    boxes[optionOneId].setAttribute('src', 'white.png');
+    boxes[optionTwoId].setAttribute('src', 'white.png');
+    boxes[optionOneId].removeEventListener('click', flipCard);
+    boxes[optionTwoId].removeEventListener('click', flipCard);
 
-  if(cardsChosen[0] == cardsChosen[1]) {
-    alert("Yeyy... Matched")
-
-    boxs[cardsChosenIds[0]].setAttribute('src', 'white.png')
-    boxs[cardsChosenIds[1]].setAttribute('src', 'white.png')
-
-    boxs[cardsChosenIds[0]].removeEventListener('click', flipCard)
-    boxs[cardsChosenIds[1]].removeEventListener('click', flipCard)
-
-    cardWon.push(cardsChosen)
-
+    // Add the matched cards to the cardsWon array
+    cardsWon.push(cardsChosen);
   } else {
-    boxs[cardsChosenIds[0]].setAttribute('src', 'blank.png')
-    boxs[cardsChosenIds[1]].setAttribute('src', 'blank.png')
+    // If the cards do not match, reset their images to blank.png
+    boxes[optionOneId].setAttribute('src', 'blank.png');
+    boxes[optionTwoId].setAttribute('src', 'blank.png');
   }
 
-  result.innerHTML = cardWon.length
+  result.textContent = cardsWon.length;
 
-  if(cardWon.length == (cardAraay.length / 2)) {
-    result.innerHTML = "Congrats you found all"
-    result.innerHTML.style.color="red"
+  // Check if all matches have been found
+  if (cardsWon.length === cardArray.length / 2) {
+    result.textContent = 'Congrats you found all';
+    result.style.color = 'red';
   }
 
-  cardsChosen = []
-  cardsChosenIds = []
-}
+  // Reset the cards chosen arrays
+  cardsChosen = [];
+  cardsChosenIds = [];
+};
 
-// change images when user selects image
-const flipCard = () => {
-  const boxId = this.getAttribute('data-id')
-  
-  cardsChosen.push(cardAraay[boxId].name)
+// Function to handle the flip of the card when clicked
+const flipCard = function () {
+  const boxId = this.getAttribute('data-id');
 
-  cardsChosenIds.push(boxId)
-  this.setAttribute('src', cardAraay[boxId].image)
-  if(cardsChosen.length == 2) {
-    setTimeout( checkMatch, 500)
+  cardsChosen.push(cardArray[boxId].name);
+  cardsChosenIds.push(boxId);
+  this.setAttribute('src', cardArray[boxId].image);
+
+  // Check if two cards have been chosen
+  if (cardsChosen.length === 2) {
+    // Wait 500ms before checking the match
+    setTimeout(checkMatch, 500);
   }
-}
+};
 
+// Create card boxes on the grid
+createCardBoxes();
 
-// scrolling effects
+// Scrolling effects observer
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    console.log(entry)
-    if(entry.isIntersecting) {
-      entry.target.classList.add ('show')
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
     } else {
-      entry.target.classList.remove('show')
+      entry.target.classList.remove('show');
     }
-  })
-})
+  });
+});
 
-const hiddenElements = document.querySelectorAll('.hidden')
-hiddenElements.forEach((el) => observer.observe(el))
+const hiddenElements = document.querySelectorAll('.hidden');
+hiddenElements.forEach((el) => observer.observe(el));
